@@ -12,15 +12,15 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/comment")
-@RequiredArgsConstructor
+@RequestMapping("/comments")
+//@RequiredArgsConstructor
 public class CommentController {
 
     private final CommentService commentService;
 
-    /*public CommentController(CommentService commentService) {
+    public CommentController(CommentService commentService) {
         this.commentService = commentService;
-    }*/
+    }
 
     @GetMapping
     public List<Comment> getAllComments(@RequestParam Optional<Long> userId, @RequestParam Optional<Long> postId){
