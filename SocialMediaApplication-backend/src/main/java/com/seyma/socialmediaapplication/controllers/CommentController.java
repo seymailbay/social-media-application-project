@@ -4,6 +4,7 @@ import com.seyma.socialmediaapplication.model.Comment;
 import com.seyma.socialmediaapplication.requests.CommentCreateRequest;
 import com.seyma.socialmediaapplication.requests.CommentUpdateRequest;
 import com.seyma.socialmediaapplication.services.CommentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,14 +12,15 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("/comment")
+@RequiredArgsConstructor
 public class CommentController {
 
     private final CommentService commentService;
 
-    public CommentController(CommentService commentService) {
+    /*public CommentController(CommentService commentService) {
         this.commentService = commentService;
-    }
+    }*/
 
     @GetMapping
     public List<Comment> getAllComments(@RequestParam Optional<Long> userId, @RequestParam Optional<Long> postId){
