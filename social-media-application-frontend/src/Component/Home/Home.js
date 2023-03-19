@@ -40,7 +40,7 @@ function Home(){
 
     useEffect(() =>{
         refreshPost()
-    },[postList])
+    })
 
     if(error){
         return <div>

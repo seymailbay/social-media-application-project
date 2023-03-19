@@ -1,7 +1,6 @@
 package com.seyma.socialmediaapplication.controllers;
 
 import com.seyma.socialmediaapplication.model.Post;
-import com.seyma.socialmediaapplication.model.User;
 import com.seyma.socialmediaapplication.requests.PostCreateRequest;
 import com.seyma.socialmediaapplication.requests.PostUpdateRequest;
 import com.seyma.socialmediaapplication.responses.PostResponse;
@@ -28,8 +27,8 @@ public class PostController {
     }
 
     @GetMapping("/{postId}")
-    public Post getOnePost(@PathVariable Long postId){
-        return postService.getOnePostById(postId);
+    public PostResponse getOnePost(@PathVariable Long postId){
+        return postService.getOnePostByIdWithLikes(postId);
     }
 
     @PostMapping

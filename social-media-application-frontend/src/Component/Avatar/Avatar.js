@@ -27,10 +27,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Avatar(props) {
-    const {avatarId} =props;
+    const {avatarId,userId,userName} =props;
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState(avatarId);
+
+    const saveAvatar = () => {
+        fetch("http://localhost:8083/users/" + localStorage.getItem("currentUser"), {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("tokenKey"),
+            },
+            body: JSON.stringify({
+                avatar: selectedValue,
+            }),
+        })
+            .then((res) => res.json())
+            .catch((err) => console.log(err))
+    }
+
 
     const handleChange = (event) => {
         setSelectedValue(parseInt(event.target.value));
@@ -42,6 +58,7 @@ function Avatar(props) {
 
     const handleClose = () => {
         setOpen(false);
+        saveAvatar();
     };
 
     return (
@@ -63,9 +80,9 @@ function Avatar(props) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button type="button" onClick={handleOpen}>
-                        What Kind Of Cat Are You?
-                    </Button>
+                    {localStorage.getItem("currentUser") == userId ? <Button size="small" color="primary"  onClick={handleOpen}>
+                        Change cat
+                    </Button> : ""}
                 </CardActions>
             </Card>
             <Modal

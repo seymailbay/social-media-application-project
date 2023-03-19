@@ -65,6 +65,12 @@ public class PostService {
         return postRepo.findById(postId).orElse(null);
     }
 
+    public PostResponse getOnePostByIdWithLikes(Long postId){
+        Post post =postRepo.findById(postId).orElse(null);
+        List<LikeResponse> likes =likeService.getAllLikesById(Optional.ofNullable(null),Optional.of(post.getId()));
+        return new PostResponse(post,likes);
+    }
+
     public Post updateOnePostById(Long postId, PostUpdateRequest updateRequest) {
         Optional<Post> post=postRepo.findById(postId);
         if(post.isPresent()){

@@ -1,6 +1,7 @@
 package com.seyma.socialmediaapplication.controllers;
 
 import com.seyma.socialmediaapplication.model.User;
+import com.seyma.socialmediaapplication.responses.UserResponse;
 import com.seyma.socialmediaapplication.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,9 +30,8 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public User getOneUser(@PathVariable Long userId){
-        //custom
-        return  userService.getOneUserById(userId);
+    public UserResponse getOneUser(@PathVariable Long userId){
+        return new UserResponse(userService.getOneUserById(userId));
     }
     @PutMapping("/{userId}")
     public User updateOneUser(@PathVariable Long userId, @RequestBody User newUser){
@@ -41,6 +41,11 @@ public class UserController {
     @DeleteMapping("/{userId}")
     public void deleteOneUser(@PathVariable Long userId){
          userService.deleteById(userId);
+    }
+
+    @GetMapping("/activity/{userId}")
+    public List<Object> getUserActivity(@PathVariable Long userId){
+        return userService.getUserActivity(userId);
     }
 
 }

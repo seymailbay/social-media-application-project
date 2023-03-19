@@ -60,10 +60,11 @@ function Post(props){
     const [isLiked, setIsLiked]=useState(false);
     const [likeCount,setLikeCount]=useState(likes.length);
     const [likeId,setLikeId]=useState(null);
+    const [refresh, setRefresh] = useState(false);
     let disabled =localStorage.getItem("currentUser") ==null ? true:false
-   /* const setCommentRefresh = () => {
+   const setCommentRefresh = () => {
         setRefresh(true);
-    }*/
+    }
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -97,6 +98,7 @@ function Post(props){
                     setError(error)
                 }
             )
+        setRefresh(false);
     }
     const saveLike = () => {
         fetch("http://localhost:8083/Likes",{
@@ -136,16 +138,16 @@ const checkLikes = () => {
             isInitialMount.current=false;
         else
             refreshComments();
-    },[commentList])
+    })
 
     useEffect(()=> {checkLikes()},[])
     return(
             <Card className={classes.root}>
                 <CardHeader
                     avatar={
-                        <Link className ={classes.link} to={"/users/" + userId}>
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                            {userName.charAt(0).toUpperCase()}
+                        <Link  className={classes.link} to={{pathname : '/users/' + userId}}>
+                            <Avatar aria-label="recipe" className={classes.avatar}>
+                                {userName.charAt(0).toUpperCase()}
                         </Avatar>
                         </Link>
                     }
