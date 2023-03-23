@@ -6,11 +6,13 @@ import com.seyma.socialmediaapplication.model.User;
 import com.seyma.socialmediaapplication.repository.CommentRepo;
 import com.seyma.socialmediaapplication.requests.CommentCreateRequest;
 import com.seyma.socialmediaapplication.requests.CommentUpdateRequest;
+import com.seyma.socialmediaapplication.responses.CommentResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -25,17 +27,19 @@ public class CommentService {
         this.postService=postService;
     }
 
-    public List<Comment> getAllCommentsWithParam(Optional<Long> userId, Optional<Long> postId) {
+    public List<CommentResponse> getAllCommentsWithParam(Optional<Long> userId, Optional<Long> postId) {
+        List<Comment> comments;
         if(userId.isPresent() && postId.isPresent()){
-            return commentRepo.findByUserIdAndPostId(userId.get(),postId.get());
+            comments= commentRepo.findByUserIdAndPostId(userId.get(),postId.get());
         }
         else if(userId.isPresent()){
-            return commentRepo.findByUserId(userId.get());
+            comments =commentRepo.findByUserId(userId.get());
         } else if (postId.isPresent()) {
-            return commentRepo.findByPostId(postId.get());
+            comments= commentRepo.findByPostId(postId.get());
         }
         else
-            return commentRepo.findAll();
+            comments =commentRepo.findAll();
+        return comments.stream().map(CommentResponse::new).collect(Collectors.toList());
     }
 
 

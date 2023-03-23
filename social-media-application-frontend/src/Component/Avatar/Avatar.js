@@ -73,14 +73,14 @@ function Avatar(props) {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Name
+                       about you
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        About you
+                        {userName}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    {localStorage.getItem("currentUser") == userId ? <Button size="small" color="primary"  onClick={handleOpen}>
+                    {localStorage.getItem("currentUser") === userId ? <Button size="small" color="primary"  onClick={handleOpen}>
                         Change cat
                     </Button> : ""}
                 </CardActions>

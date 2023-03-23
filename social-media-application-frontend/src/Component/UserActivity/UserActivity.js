@@ -41,16 +41,6 @@ const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function GetWithAuth(url) {
-    return fetch(url, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": localStorage.getItem("tokenKey"),
-        },
-    });
-}
-
 
 function PopUp(props) {
     const classes = useStyles();
@@ -59,7 +49,13 @@ function PopUp(props) {
     const [post, setPost] = useState();
 
     const getPost = () => {
-        GetWithAuth("http://localhost:8083/posts/"+postId)
+        fetch("http://localhost:8083/posts/"+postId, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : localStorage.getItem("tokenKey"),
+            },
+        })
             .then(res => res.json())
             .then(
                 (result) => {
@@ -118,9 +114,14 @@ function UserActivity(props) {
         setSelectedPost(postId);
         setIsOpen(true);
     };
-
     const getActivity = () => {
-        GetWithAuth("http://localhost:8083/users/activity/" + userId)
+        fetch("http://localhost:8083/users/activity/"+userId, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : localStorage.getItem("tokenKey"),
+            },
+        })
             .then(res => res.json())
             .then(
                 (result) => {

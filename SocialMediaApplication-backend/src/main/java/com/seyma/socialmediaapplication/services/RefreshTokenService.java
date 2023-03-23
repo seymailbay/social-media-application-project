@@ -42,7 +42,7 @@ public class RefreshTokenService {
     }
 
 
-    public RefreshToken getByUser(Long userId) {
+    public RefreshToken getRefreshTokenByUserId(Long userId) {
         return refreshTokenRepo.findByUserId(userId);
     }
 }

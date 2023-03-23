@@ -38,7 +38,7 @@ function  CommentForm(props){
             },
             body: JSON.stringify({
                 postId: postId,
-                userId:  localStorage.getItem("currentUser"),
+                userId: localStorage.getItem("currentUser"),
                 text: text,
             }),
         })

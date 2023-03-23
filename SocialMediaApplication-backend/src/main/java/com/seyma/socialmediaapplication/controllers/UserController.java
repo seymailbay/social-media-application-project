@@ -1,8 +1,12 @@
 package com.seyma.socialmediaapplication.controllers;
 
+import com.seyma.socialmediaapplication.exceptions.UserNotFoundException;
 import com.seyma.socialmediaapplication.model.User;
 import com.seyma.socialmediaapplication.responses.UserResponse;
 import com.seyma.socialmediaapplication.services.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +35,11 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public UserResponse getOneUser(@PathVariable Long userId){
-        return new UserResponse(userService.getOneUserById(userId));
+        User user = userService.getOneUserById(userId);
+        if(user ==null){
+            throw new UserNotFoundException("User Not Found");
+        }
+        return new UserResponse(user);
     }
     @PutMapping("/{userId}")
     public User updateOneUser(@PathVariable Long userId, @RequestBody User newUser){
@@ -48,4 +56,10 @@ public class UserController {
         return userService.getUserActivity(userId);
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    private ResponseEntity<String> handleUserNotFound(UserNotFoundException ex) {
+        String message ="User Not Found";
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    }
 }

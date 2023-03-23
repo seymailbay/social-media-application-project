@@ -3,6 +3,7 @@ package com.seyma.socialmediaapplication.controllers;
 import com.seyma.socialmediaapplication.model.Comment;
 import com.seyma.socialmediaapplication.requests.CommentCreateRequest;
 import com.seyma.socialmediaapplication.requests.CommentUpdateRequest;
+import com.seyma.socialmediaapplication.responses.CommentResponse;
 import com.seyma.socialmediaapplication.services.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class CommentController {
     }
 
     @GetMapping
-    public List<Comment> getAllComments(@RequestParam Optional<Long> userId, @RequestParam Optional<Long> postId){
+    public List<CommentResponse> getAllComments(@RequestParam Optional<Long> userId, @RequestParam Optional<Long> postId){
         return commentService.getAllCommentsWithParam(userId,postId);
     }
 

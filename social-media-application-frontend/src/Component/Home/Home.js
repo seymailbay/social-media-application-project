@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "rgba(248,60,0,0.55)",
+        backgroundColor: "#03a1fc",
     }
 }));
 

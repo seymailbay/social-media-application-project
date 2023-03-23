@@ -28,9 +28,13 @@ function Auth(){
         })
             .then((res) => res.json())
             .then((result)=>{
-                            localStorage.setItem("tokenKey",result.message);
+                            localStorage.setItem("tokenKey",result.accessToken);
+                            localStorage.setItem("refreshKey",result.refreshToken);
                             localStorage.setItem("currentUser",result.userId);
                             localStorage.setItem("userName",username);
+                            if (path=="login"){
+                                refresh();
+                            }
             })
             .catch((err) => console.log(err))
     };
@@ -49,7 +53,12 @@ function Auth(){
         setPassword("")
         console.log(localStorage)
     }
+    const refresh = () => window.location.reload(true)
+    const delay = ms => new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
 
+        
     const handleButton =(path) => {
             sendRequest(path)
             setUsername("")
