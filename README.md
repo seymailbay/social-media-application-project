@@ -57,9 +57,7 @@ A small social media project was done.
 
 ![HomePage](https://github.com/seymailbay/social-media-application-project/blob/main/preview/postpage.PNG)
 
-![Profile Page](https://github.com/seymailbay/social-media-application-project/blob/main/preview/profile.PNG)
-
-![Changing Avatar](https://github.com/seymailbay/social-media-application-project/blob/main/preview/avatarchange.PNG)
+![Profile Page](https://github.com/seymailbay/social-media-application-project/blob/main/preview/changeavatar.PNG)
 
 ![Posts](https://github.com/seymailbay/social-media-application-project/blob/main/preview/psotpage2.PNG)
 
