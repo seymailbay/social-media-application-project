@@ -49,6 +49,44 @@ A small social media project was done.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+<!-- TEST SCENARIOS-->
+## TEST SCENARIOS
+
+User registration:
+Verify that a new user can successfully register on the platform by providing a unique username and password.
+Verify that a user cannot register with an already taken username.
+Verify that the user is redirected to the login page after successful registration.
+
+User login:
+Verify that a registered user can log in to the platform by entering their username and password.
+Verify that an incorrect username or password results in an error message and the user cannot log in.
+Verify that the user is redirected to their profile page after successful login.
+
+Posting:
+Verify that a logged-in user can create a new post with a maximum of 250 words.
+Verify that the post is displayed on the homepage for all users to see.
+Verify that the date and time of the post are saved in the database.
+Verify that the post cannot be created if the user is not logged in.
+
+Commenting:
+Verify that a logged-in user can comment on a post with a maximum of 250 words.
+Verify that the comment is displayed on the post for all users to see.
+Verify that the date and time of the comment are saved in the database.
+Verify that the comment cannot be created if the user is not logged in.
+
+Liking:
+Verify that a logged-in user can like a post.
+Verify that the number of likes for a post is updated in real-time.
+Verify that a user can only like a post once.
+Verify that the like button is not available if the user is not logged in.
+
+Avatar:
+Verify that a user can upload and save their own avatar image to their profile page.
+Verify that the avatar is displayed correctly on the profile page.
+Verify that the avatar is saved in the database.
+Verify that the avatar upload feature is only available for logged-in users.
+
+
 <!-- PREVIEWS -->
 
 ## Previews
